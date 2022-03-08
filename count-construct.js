@@ -9,8 +9,8 @@
 * ***********************************************************
 * brute-force
 *
-* time O()
-* space O()
+* time O(n^m * m)
+* space O(m^2)
 */
 
 /*
@@ -34,8 +34,8 @@ const countConstruct = (target, wordBank) => {
 * ********************************************************************
 * memoized
 *
-* time O()
-* space O()
+* time O(n * m^2)
+* space O(m^2)
 *
 */
 
