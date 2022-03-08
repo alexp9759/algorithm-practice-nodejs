@@ -6,6 +6,17 @@
     if there is a tie, any of the shortest combos can be returned
 
  */
+
+/*
+* ********************************************************************
+* brute-force solution
+*
+* m = targetSum
+* n = numbers.length
+* time: O(n^m * m)
+* space: O(m^2)
+*/
+
 /*
 const bestSum = (targetSum, numbers) => {
     if (targetSum === 0) return [];
@@ -27,19 +38,18 @@ const bestSum = (targetSum, numbers) => {
 
     return shortestCombination;
 };
+*/
+
+/*
+* ********************************************************************
+* memoized solution
+*/
 
 // m = targetSum
 // n = numbers.length
 
-// time: O(n^m * m)
+// time: O(m^2 * n)
 // space: O(m^2)
-
-console.log(bestSum(7, [5, 3, 4, 7])); // [7]
-console.log(bestSum(8, [2, 3, 5])); // [3, 5]
-console.log(bestSum(8, [1, 4, 5])); // [4, 4]
-console.log(bestSum(100, [1, 2, 5, 25])); // [25, 25, 25, 25]
-*/
-
 
 const bestSum = (targetSum, numbers, memo={}) => {
     if (targetSum in memo) return memo[targetSum];
@@ -64,11 +74,11 @@ const bestSum = (targetSum, numbers, memo={}) => {
     return shortestCombination;
 };
 
-// m = targetSum
-// n = numbers.length
 
-// time: O(m^2 * n)
-// space: O(m^2)
+/*
+* ********************************************************************
+* tests
+*/
 
 console.log(bestSum(7, [5, 3, 4, 7])); // [7]
 console.log(bestSum(8, [2, 3, 5])); // [3, 5]

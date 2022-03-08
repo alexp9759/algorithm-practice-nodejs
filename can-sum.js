@@ -4,6 +4,16 @@
    elements in array can be used as many times as needed
    all inputs are non negative
  */
+
+/*
+* ********************************************************************
+* brute-force solution
+*
+* O(n^m) time
+* O(m) space
+*
+*/
+
 /*
 const canSum = (targetSum, numbers) => {
     if (targetSum === 0) return true;
@@ -19,18 +29,15 @@ const canSum = (targetSum, numbers) => {
     return false;
 };
 
-console.log(canSum(7, [2, 3]));
-console.log(canSum(7, [5, 3, 4, 7]));
-console.log(canSum(7, [2, 4]));
-console.log(canSum(8, [2, 3, 5]));
-console.log(canSum(300, [7, 14]));
 */
-//O(n^m) time
-//O(m) space
 
 /*
-=========================================================================
-memoized
+* =========================================================================
+* memoized
+*
+* O(m*n) time
+* O(m) space
+*
  */
 
 const canSum = (targetSum, numbers, memo={}) => {
@@ -50,11 +57,14 @@ const canSum = (targetSum, numbers, memo={}) => {
     return false;
 };
 
+/*
+* ********************************************************************
+* tests
+*/
+
 console.log(canSum(7, [2, 3]));
 console.log(canSum(7, [5, 3, 4, 7]));
 console.log(canSum(7, [2, 4]));
 console.log(canSum(8, [2, 3, 5]));
 console.log(canSum(300, [7, 14]));
 
-// O(m*n) time
-// O(m) space

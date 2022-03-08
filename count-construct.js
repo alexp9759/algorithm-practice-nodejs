@@ -6,9 +6,14 @@
  */
 
 /*
-//brute-force
-//time O()
-//space O()
+* ***********************************************************
+* brute-force
+*
+* time O()
+* space O()
+*/
+
+/*
 const countConstruct = (target, wordBank) => {
     if (target === '') return 1;
 
@@ -26,12 +31,13 @@ const countConstruct = (target, wordBank) => {
 */
 
 /*
-    ***********************************************************************************
- */
-
-//memoized
-//time O()
-//space O()
+* ********************************************************************
+* memoized
+*
+* time O()
+* space O()
+*
+*/
 
 const countConstruct = (target, wordBank, memo={}) => {
     if (target in memo) return memo[target];
@@ -51,7 +57,10 @@ const countConstruct = (target, wordBank, memo={}) => {
 };
 
 
-// tests *************************************************************
+/*
+* ********************************************************************
+* tests
+*/
 console.log(countConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl'])); //2
 console.log(countConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd'])); //1
 console.log(countConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar'])); //0
