@@ -51,6 +51,7 @@ const bestSum = (targetSum, numbers) => {
 // time: O(m^2 * n)
 // space: O(m^2)
 
+/*
 const bestSum = (targetSum, numbers, memo={}) => {
     if (targetSum in memo) return memo[targetSum];
     if (targetSum === 0) return [];
@@ -73,7 +74,39 @@ const bestSum = (targetSum, numbers, memo={}) => {
     memo[targetSum] = shortestCombination;
     return shortestCombination;
 };
+*/
 
+/*
+* =========================================================================
+* tabulated
+*
+* m=targetSum
+* n=numbers.length
+*
+* O(m^2 * n) time
+* O(m^2) space
+*
+ */
+
+const bestSum = (targetSum, numbers) => {
+
+    const table = Array(targetSum + 1).fill(null);
+    table[0] = [];
+
+    for (let i = 0; i <= targetSum; i++) {
+        if (table[i] !== null) {
+            for (let num of numbers) {
+                const combination = [ ...table[i], num ];
+                // if current combination is shorter than one already there
+                if (!table[i + num] || table[i + num].length > combination.length) {
+                    table[i + num] = combination;
+                }
+            }
+        }
+    }
+
+    return table[targetSum];
+};
 
 /*
 * ********************************************************************
