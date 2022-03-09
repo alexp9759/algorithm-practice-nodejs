@@ -50,6 +50,8 @@ const allConstruct = (target, wordBank) => {
 * space O(m)
 *
 */
+
+/*
 const allConstruct = (target, wordBank, memo={}) => {
     if (target in memo) return memo[target];
     if (target === '') return [[]];
@@ -68,6 +70,41 @@ const allConstruct = (target, wordBank, memo={}) => {
     memo[target] = result;
     return result;
 };
+*/
+
+/*
+* =========================================================================
+* tabulated
+*
+* m=target.length
+* n=wordBank.length
+*
+* ~O(n^m) time
+* ~O(n^m) space
+*
+* this isn't the best solution for
+*
+ */
+
+const allConstruct = (target, wordBank) => {
+    const table = Array(target.length + 1)
+        .fill()
+        .map(() => []);
+
+    table[0] = [[]];
+
+    for ( let i = 0; i <= target.length; i++) {
+        for (let word of wordBank) {
+            if (target.slice(i, i + word.length) === word) {
+                const newCombinations = table[i].map(subArray => [ ...subArray, word ]);
+                table[i + word.length].push(...newCombinations);
+            }
+        }
+    }
+
+    return table[target.length]
+}
+
 
 /*
 * ********************************************************************
@@ -76,4 +113,4 @@ const allConstruct = (target, wordBank, memo={}) => {
 console.log(allConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
 console.log(allConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']));
 console.log(allConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
-console.log(allConstruct("aaaaaaaaaaaaaaaaaaaaaz", [ 'a', 'aa', 'aaa', 'aaaa', 'aaaaa']));
+console.log(allConstruct("aaaaaaaaaaaaz", [ 'a', 'aa', 'aaa', 'aaaa', 'aaaaa']));
