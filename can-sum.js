@@ -40,6 +40,7 @@ const canSum = (targetSum, numbers) => {
 *
  */
 
+/*
 const canSum = (targetSum, numbers, memo={}) => {
     if (targetSum in memo) return memo[targetSum];
     if (targetSum === 0) return true;
@@ -56,6 +57,34 @@ const canSum = (targetSum, numbers, memo={}) => {
     memo[targetSum] = false;
     return false;
 };
+ */
+
+/*
+* =========================================================================
+* tabulated
+*
+* m=targetSum
+* n=numbers.length
+*
+* O(m*n) time
+* O(m) space
+*
+ */
+
+const canSum = (targetSum, numbers) => {
+
+    const table = Array(targetSum + 1).fill(false);
+    table[0] = true;
+    for(let i = 0; i <= targetSum; i++) {
+        if (table[i] === true) {
+            for (let num of numbers) {
+                table[i + num] = true;
+            }
+        }
+    }
+
+    return table[targetSum];
+}
 
 /*
 * ********************************************************************
